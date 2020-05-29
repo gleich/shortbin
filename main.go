@@ -11,5 +11,7 @@ func main() {
 	fName := strings.TrimSpace(os.Args[1])
 	if strings.HasSuffix(fName, ".sbin") {
 		processes.Compile(fName)
+	} else {
+		processes.Translate(fName)
 	}
 }
