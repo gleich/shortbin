@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"strings"
 
@@ -11,6 +10,6 @@ import (
 func main() {
 	fName := strings.TrimSpace(os.Args[1])
 	if strings.HasSuffix(fName, ".sbin") {
-		fmt.Println(processes.Compile(fName))
+		processes.Compile(fName)
 	}
 }

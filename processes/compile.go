@@ -1,14 +1,16 @@
 package processes
 
 import (
+	"errors"
 	"io/ioutil"
 	"log"
+	"os"
 	"strconv"
 	"strings"
 )
 
 // Compile ... Take the sbin and compile it to pure binary
-func Compile(fName string) string {
+func Compile(fName string) {
 	sbin, err := ioutil.ReadFile(fName)
 	if err != nil {
 		log.Fatal(err)
@@ -31,5 +33,30 @@ func Compile(fName string) string {
 			binary = append(binary, bit)
 		}
 	}
-	return strings.Join(binary, "")
+	file, err := os.OpenFile(
+		"out",
+		os.O_WRONLY|os.O_TRUNC|os.O_CREATE,
+		0666,
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	bytes, err := bitStringToBytes(strings.Join(binary, ""))
+	if err != nil {
+		log.Fatal(err)
+	}
+	_, err = file.Write(bytes)
+}
+
+func bitStringToBytes(s string) ([]byte, error) {
+	b := make([]byte, (len(s)+(8-1))/8)
+	for i := 0; i < len(s); i++ {
+		c := s[i]
+		if c < '0' || c > '1' {
+			return nil, errors.New("value out of range")
+		}
+		b[i>>3] |= (c - '0') << uint(7-i&7)
+	}
+	return b, nil
 }
