@@ -1,4 +1,4 @@
-package processes
+package compression
 
 import (
 	"errors"
@@ -9,8 +9,8 @@ import (
 	"strings"
 )
 
-// Compile ... Take the sbin and compile it to pure binary
-func Compile(fName string) {
+// Decompress ... Take the sbin and decompress it into pure binary
+func Decompress(fName string) {
 	sbin, err := ioutil.ReadFile(fName)
 	if err != nil {
 		log.Fatal(err)

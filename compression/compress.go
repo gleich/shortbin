@@ -1,4 +1,4 @@
-package processes
+package compression
 
 import (
 	"fmt"
@@ -9,8 +9,8 @@ import (
 	"strings"
 )
 
-// Translate ... Translate a binary file to a sbin file
-func Translate(fName string) {
+// Compress ... Compress a binary file to a sbin file
+func Compress(fName string) {
 	bytes, err := ioutil.ReadFile(fName)
 	if err != nil {
 		log.Fatal(err)

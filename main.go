@@ -4,14 +4,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/Matt-Gleich/shortbin/processes"
+	"github.com/Matt-Gleich/shortbin/compression"
 )
 
 func main() {
 	fName := strings.TrimSpace(os.Args[1])
 	if strings.HasSuffix(fName, ".sbin") {
-		processes.Compile(fName)
+		compression.Decompress(fName)
 	} else {
-		processes.Translate(fName)
+		compression.Compress(fName)
 	}
 }
