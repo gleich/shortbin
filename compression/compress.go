@@ -44,9 +44,9 @@ func Compress(fName string) {
 			var suffix string
 			switch recent {
 			case "0":
-				suffix = "\\?"
+				suffix = "-"
 			case "1":
-				suffix = "\\!"
+				suffix = "+"
 			}
 			sbinChunks = append(sbinChunks, string(consecutiveInstances)+suffix)
 			consecutiveInstances = 0

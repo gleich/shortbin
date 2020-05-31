@@ -20,7 +20,7 @@ func Decompress(fName string) {
 	var bit string
 	binary := []string{}
 	for _, chunk := range trimmedChunks {
-		if strings.HasSuffix(chunk, "?") {
+		if strings.HasSuffix(chunk, "-") {
 			bit = "0"
 		} else {
 			bit = "1"
